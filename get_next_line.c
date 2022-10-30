@@ -3,118 +3,88 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzeroual <mzeroual@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mzeroual <mzeroual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:18:53 by mzeroual          #+#    #+#             */
-/*   Updated: 2022/10/27 18:18:32 by mzeroual         ###   ########.fr       */
+/*   Updated: 2022/10/30 23:21:51 by mzeroual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <stdio.h>
-#include <unistd.h> 
-#include <string.h>
-#include "get_next_line.h" 
+#include "get_next_line.h"
 
-char *ft_get(int fd,char *str)
+char *ft_get_big_line(int fd, char *stock)
 {
-	char *buf;
+	char *buffer;
+	char *str;
 	int count;
 
-	buf = malloc(BUFFER_SIZE);
-	int i = 0;
-	int n = 1;
-	while (n)
+	count = 1;
+	buffer = malloc(BUFFER_SIZE + 1);
+	while (count)
 	{
-		count = read(fd, buf, BUFFER_SIZE);
+		count = read(fd,buffer,BUFFER_SIZE);
 		if (count <= 0)
-			return 0;
-		str = ft_strjoin(str,buf);
-		while (str[i])
-		{
-			if (str[i++] == '\n')
-			{
-				n = 0;
-				break;
-			}
-		}
-	}
-	free(buf);
-	return (str);
-}
-
-char *ft_get_line(char *str)
-{
-	if (!str)
-		return (0);
-	int i;
-	char *line;
-
-	i = 0;
-	while (str[i] != '\n')
-		i++;
-	line = malloc(i);
-	i = 0;
-	if (!line)
-		return (0);
-	while (str[i])
-	{
-		line[i] = str[i];
-		if (str[i] == '\n')
 			break;
-		i++;
+		buffer[count] = 0;
+		str = stock;
+		stock = ft_strjoin(str, buffer);
+		free(str);
+		if (ft_strchr(buffer, '\n'))
+			break;
 	}
-	free(str);
-	line[++i] = '\0';
-	return(line);
+	free(buffer);
+	return (stock);
 }
 
-char *ft_back_up(char *str)
+char *ft_get_line(char *str, char **stock)
 {
-	if (!str)
-		return (0);
-	int i = 0;
-	while (str[i] != '\n')
+	char *line;
+	int i;
+
+	i = 0;
+	while (str[i] != '\n' && str[i] != '\0')
 		i++;
-	i++;
+	line = ft_substr(str,0, i + 1);
+	*stock = ft_substr(str + i, 1 , ft_strlen(str) - i - 1);
 	
-	return (str + i);
+	free(str);
+	return (line);
 }
 
 char *get_next_line(int fd)
 {
+	static char *stock;
+	char *line;
+	char *big_line;
 
 	if (fd <  0 || BUFFER_SIZE <= 0)
 		return (0);
-	static char *stack = "";
-	char *line = "";
-
-	if (!stack)
+	if (!stock)
+		stock = ft_strdup("");
+	big_line = ft_get_big_line(fd, stock);
+	if (*big_line == 0)
 		return (0);
-	line = ft_memcpy(line, stack, ft_strlen(stack));
-	stack = ft_get(fd,stack);
-	line = ft_get_line(stack);
-	stack = ft_back_up(stack);
-	
-	return (stack);
+	line = ft_get_line(big_line, &stock);
+
+	return (line);
 }
-int main()
-{
-	int fd;
-	fd = open("line.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-//	printf("%s\n", get_next_line(fd));
-//	printf("%s\n", get_next_line(fd));
-//	printf("%s\n", get_next_line(fd));
-//	printf("%s\n", get_next_line(fd));
-//	printf("%s\n", get_next_line(fd));
-//	printf("%s\n", get_next_line(fd));
-//	printf("%s\n", get_next_line(fd));
-//	printf("%s\n", get_next_line(fd));
-//	printf("%s\n", get_next_line(fd));
-//	printf("%s\n", get_next_line(fd));
-//	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-//	
-	close(fd);
-}
+
+// int main()
+// {
+// 	int fd;
+// 	fd = open("text.txt", O_RDONLY);
+
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+//  printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	// printf("%s", get_next_line(fd));
+// 	// printf("%s", get_next_line(fd));
+// 	close(fd);
+// }
