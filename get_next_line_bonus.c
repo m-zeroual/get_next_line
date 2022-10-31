@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzeroual <mzeroual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzeroual <mzeroual@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 15:18:53 by mzeroual          #+#    #+#             */
-/*   Updated: 2022/10/31 21:45:21 by mzeroual         ###   ########.fr       */
+/*   Created: 2022/10/31 21:21:55 by mzeroual          #+#    #+#             */
+/*   Updated: 2022/10/31 21:45:56 by mzeroual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_get_big_line(int fd, char *stock)
 {
@@ -71,23 +71,3 @@ char	*get_next_line(int fd)
 	line = ft_get_line(big_line, &stock);
 	return (line);
 }
-/*
-int main()
-{
- 	int fd;
- 	fd = open("text.txt", O_RDONLY);
- 	printf("%s", get_next_line(fd));
- 	printf("%s", get_next_line(fd));
- 	 printf("%s", get_next_line(fd));
- 	printf("%s", get_next_line(fd));
-  	// printf("%s", get_next_line(fd));
- 	// printf("%s", get_next_line(fd));
- 	// printf("%s", get_next_line(fd));
- 	// printf("%s", get_next_line(fd));
- 	// printf("%s", get_next_line(fd));
- 	// printf("%s", get_next_line(fd));
- 	// printf("%s", get_next_line(fd));
- 	// printf("%s", get_next_line(fd));
- 	close(fd);
- }
- */
