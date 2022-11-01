@@ -6,7 +6,7 @@
 /*   By: mzeroual <mzeroual@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 21:40:20 by mzeroual          #+#    #+#             */
-/*   Updated: 2022/10/31 21:42:16 by mzeroual         ###   ########.fr       */
+/*   Updated: 2022/10/31 22:19:24 by mzeroual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	p[i] = '\0';
 	return (p);
-}
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	if (!dst && !src)
-		return (0);
-	while (i < n)
-	{
-		((char *)dst)[i] = ((char *)src)[i];
-		i++;
-	}
-	return (dst);
 }
 
 char	*ft_strchr(const char *str, int c)

@@ -6,7 +6,7 @@
 /*   By: mzeroual <mzeroual@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 21:21:55 by mzeroual          #+#    #+#             */
-/*   Updated: 2022/10/31 21:45:56 by mzeroual         ###   ########.fr       */
+/*   Updated: 2022/11/01 12:00:01 by mzeroual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,22 @@ char	*ft_get_line(char *str, char **stock)
 
 char	*get_next_line(int fd)
 {
-	static char	*stock;
+	static char	*stock[4096];
 	char		*line;
 	char		*big_line;
 
 	big_line = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	if (!stock)
-		stock = ft_strdup("");
-	big_line = ft_get_big_line(fd, stock);
-	stock = 0;
+	if (!stock[fd])
+		stock[fd] = ft_strdup("");
+	big_line = ft_get_big_line(fd, stock[fd]);
+	stock[fd] = 0;
 	if (*big_line == 0)
 	{
 		free(big_line);
 		return (0);
 	}
-	line = ft_get_line(big_line, &stock);
+	line = ft_get_line(big_line, &stock[fd]);
 	return (line);
 }
