@@ -6,7 +6,7 @@
 /*   By: mzeroual <mzeroual@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 16:48:08 by mzeroual          #+#    #+#             */
-/*   Updated: 2022/10/31 17:03:09 by mzeroual         ###   ########.fr       */
+/*   Updated: 2022/11/01 12:06:59 by mzeroual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define GET_NEXT_LINE_H
 
 # include <unistd.h> 
-# include <fcntl.h>
-# include <stdio.h> 
 # include <stdlib.h>
 
 char	*get_next_line(int fd);

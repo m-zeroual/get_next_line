@@ -6,7 +6,7 @@
 /*   By: mzeroual <mzeroual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:18:53 by mzeroual          #+#    #+#             */
-/*   Updated: 2022/10/31 21:45:21 by mzeroual         ###   ########.fr       */
+/*   Updated: 2022/11/01 12:21:47 by mzeroual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,23 +71,3 @@ char	*get_next_line(int fd)
 	line = ft_get_line(big_line, &stock);
 	return (line);
 }
-/*
-int main()
-{
- 	int fd;
- 	fd = open("text.txt", O_RDONLY);
- 	printf("%s", get_next_line(fd));
- 	printf("%s", get_next_line(fd));
- 	 printf("%s", get_next_line(fd));
- 	printf("%s", get_next_line(fd));
-  	// printf("%s", get_next_line(fd));
- 	// printf("%s", get_next_line(fd));
- 	// printf("%s", get_next_line(fd));
- 	// printf("%s", get_next_line(fd));
- 	// printf("%s", get_next_line(fd));
- 	// printf("%s", get_next_line(fd));
- 	// printf("%s", get_next_line(fd));
- 	// printf("%s", get_next_line(fd));
- 	close(fd);
- }
- */
