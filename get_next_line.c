@@ -6,7 +6,7 @@
 /*   By: mzeroual <mzeroual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:18:53 by mzeroual          #+#    #+#             */
-/*   Updated: 2022/11/01 12:21:47 by mzeroual         ###   ########.fr       */
+/*   Updated: 2022/11/03 19:23:35 by mzeroual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ char	*get_next_line(int fd)
 	char		*line;
 	char		*big_line;
 
-	big_line = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	if (!stock)
